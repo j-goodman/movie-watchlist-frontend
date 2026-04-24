@@ -15,22 +15,36 @@ const loadDataToPage = data => {
     data.forEach(movie => {
         const liElement = document.createElement("li")
         const pElement = document.createElement("p")
-        const divElement = document.createElement("div")
+        const watchedButton = document.createElement("div")
         const deleteButton = document.createElement("div")
         
         pElement.innerHTML = `<b>${movie.title}</b>, ${movie.year}, starring ${movie.starring[0]} and ${movie.starring[1]}.`
-        divElement.innerText = movie.watched ? `WATCHED` : `NOT WATCHED YET`
+        watchedButton.innerText = movie.watched ? `WATCHED` : `NOT WATCHED YET`
+        watchedButton.className = movie.watched ? `watch-button green-button` : `watch-button`
         deleteButton.innerText = "×"
         deleteButton.className = "delete-button"
+
+        watchedButton.addEventListener("click", () => {
+            toggleMovieWatched(movie.id)
+        })
 
         deleteButton.addEventListener("click", () => {
             deleteMovie(movie.id)
         })
 
         liElement.appendChild(pElement)
-        liElement.appendChild(divElement)
+        liElement.appendChild(watchedButton)
         liElement.appendChild(deleteButton)
         movieListContainer.appendChild(liElement)
+    })
+}
+
+const toggleMovieWatched = (movieId) => {
+    fetch(`http://localhost:3000/movies/${movieId}/toggle-watched`, {method: 'PATCH'})
+    .then(response => response.json())
+    .then(() => {
+        console.log(`Updated movie ${movieId}.`)
+        fetchData()
     })
 }
 

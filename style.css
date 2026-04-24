@@ -22,8 +22,17 @@ li div {
     background-color: rgb(80, 120, 190);
     border-radius: 16px;
     color: white;
+    cursor: pointer;
     margin-bottom: 5px;
     padding: 2px 9px;
+}
+
+.green-button {
+    background-color: rgb(80, 190, 120);
+}
+
+.watched-button:hover {
+    background-color: rgb(140, 156, 183);
 }
 
 .delete-button {
