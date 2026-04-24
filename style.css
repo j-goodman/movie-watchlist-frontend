@@ -7,11 +7,22 @@ body {
 
 li {
     display: flex;
+    border-bottom: 2px solid #ddd;
     flex-direction: row;
+    justify-content: space-between;
     list-style: none;
+    margin: 5px;
 }
 
 p {
     margin: 0;
     margin-right: 30px;
+}
+
+li div {
+    background-color: rgb(80, 120, 190);
+    border-radius: 16px;
+    color: white;
+    margin-bottom: 5px;
+    padding: 2px 9px;
 }
